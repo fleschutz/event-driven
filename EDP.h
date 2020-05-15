@@ -1,27 +1,32 @@
+// EDP.h - event-driven programming (EDP)
 #pragma once
 
-extern void at_pre_sunrise(void (*func)(void));
-extern void at_sunrise(void (*func)(void));
-extern void at_post_sunrise(void (*func)(void));
+extern void at_pre_sunrise(void (*fn)(void));
+extern void at_sunrise(void (*fn)(void));
+extern void at_post_sunrise(void (*fn)(void));
 
-extern void at_pre_midday(void (*func)(void));
-extern void at_midday(void (*func)(void));
-extern void at_post_midday(void (*func)(void));
+extern void at_pre_midday(void (*fn)(void));
+extern void at_midday(void (*fn)(void));
+extern void at_post_midday(void (*fn)(void));
 
-extern void at_pre_sunset(void (*func)(void));
-extern void at_sunset(void (*func)(void));
-extern void at_post_sunset(void (*func)(void));
+extern void at_pre_sunset(void (*fn)(void));
+extern void at_sunset(void (*fn)(void));
+extern void at_post_sunset(void (*fn)(void));
 
-extern void at_pre_noon(void (*func)(void));
-extern void at_noon(void (*func)(void));
-extern void at_post_noon(void (*func)(void));
+extern void at_pre_noon(void (*fn)(void));
+extern void at_noon(void (*fn)(void));
+extern void at_post_noon(void (*fn)(void));
 
-extern void at_pre_exit(void (*func)(void));
-extern void at_exit(void (*func)(void));
-extern void at_post_exit(void (*func)(void));
-
-extern void at_pre_run(void (*func)(void));
-extern void at_run(void (*func)(void));
-extern void at_post_run(void (*func)(void));
+extern void at_pre_run(void (*fn)(void));
+extern void at_run(void (*fn)(void));
+extern void at_post_run(void (*fn)(void));
 
 extern void run();
+
+extern void at_buffer_overflow(void (*fn)(void));
+extern void at_memory_exhausted(void (*fn)(void));
+
+// Program exit:
+extern void at_pre_exit(void (*fn)(void));
+extern void at_exit(void (*fn)(void));
+extern void at_post_exit(void (*fn)(void));

@@ -1,99 +1,122 @@
+// EDP.c - event-driven programming (EDP)
 #include "EDP.h"
 
 #include <stdlib.h>
 #include <unistd.h>
 
-typedef enum {
-	PRE_RUN, RUN, POST_RUN,
-	PRE_EXIT, EXIT, POST_EXIT,
-} Type;
-static void (*calls[100])(void);
+#define NUM_CALLS 20
+typedef struct {
+	void (*func[NUM_CALLS])(void);
+} Calls;
+static Calls pre_run_calls, run_calls, post_run_calls;
+static Calls buffer_overflow_calls, memory_exhausted_calls;
+static Calls pre_exit_calls, exit_calls, post_exit_calls;
 
-static void remember(void (*func)(void), Type type)
+static void call(Calls *calls)
 {
-	calls[type] = func;
+	for (int i = 0; i < NUM_CALLS; ++i)
+		if (calls->func[i])
+			(*calls->func[i])();
+		else
+			return;
 }
 
-static void call(Type type)
+static void remember(void (*func)(void), Calls *calls)
 {
-	if (calls[type])
-		(*calls[type])();
+	for (int i = 0; i < NUM_CALLS; ++i)
+	{
+		if (calls->func[i])
+			continue;
+		calls->func[i] = func;
+		return;
+	}
+	call(&buffer_overflow_calls);
 }
 
-void at_pre_sunrise(void (*func)(void))
+void at_pre_sunrise(void (*fn)(void))
 {
 	// TODO
 }
 
-void at_sunrise(void (*func)(void))
+void at_sunrise(void (*fn)(void))
 {
 	// TODO
 }
 
-void at_post_sunrise(void (*func)(void))
+void at_post_sunrise(void (*fn)(void))
 {
 	// TODO
 }
 
-void at_midday(void (*func)(void))
+void at_midday(void (*fn)(void))
 {
 	// TODO
 }
 
-void at_sunset(void (*func)(void))
+void at_sunset(void (*fn)(void))
 {
 	// TODO
 }
 
-void at_noon(void (*func)(void))
+void at_noon(void (*fn)(void))
 {
 	// TODO
 }
 
-void at_pre_run(void (*func)(void))
+void at_pre_run(void (*fn)(void))
 {
-	remember(func, PRE_RUN);
+	remember(fn, &pre_run_calls);
 }
 
-void at_run(void (*func)(void))
+void at_run(void (*fn)(void))
 {
-	remember(func, RUN);
+	remember(fn, &run_calls);
 }
 
-void at_post_run(void (*func)(void))
+void at_post_run(void (*fn)(void))
 {
-	remember(func, POST_RUN);
-}
-
-static void _on_exit(void)
-{
-	call(PRE_EXIT);
-	call(EXIT);
-	call(POST_EXIT);
-}
-
-void at_pre_exit(void (*func)(void))
-{
-	atexit(_on_exit);
-	remember(func, PRE_EXIT);
-}
-
-void at_exit(void (*func)(void))
-{
-	atexit(_on_exit);
-	remember(func, EXIT);
-}
-
-void at_post_exit(void (*func)(void))
-{
-	atexit(_on_exit);
-	remember(func, POST_EXIT);
+	remember(fn, &post_run_calls);
 }
 
 void run()
 {
-	call(PRE_RUN);
-	call(RUN);
+	call(&pre_run_calls);
+	call(&run_calls);
 	usleep(5 * 1000 * 1000);
-	call(POST_RUN);
+	call(&post_run_calls);
+}
+
+void at_buffer_overflow(void (*fn)(void))
+{
+	remember(fn, &buffer_overflow_calls);
+}
+
+void at_memory_exhausted(void (*fn)(void))
+{
+	remember(fn, &memory_exhausted_calls);
+}
+
+static void _on_exit(void)
+{
+	call(&pre_exit_calls);
+	call(&exit_calls);
+	call(&post_exit_calls);
+}
+
+void at_pre_exit(void (*fn)(void))
+{
+	atexit(_on_exit);
+	remember(fn, &pre_exit_calls);
+}
+
+void at_exit(void (*fn)(void))
+{
+	atexit(_on_exit);
+	remember(fn, &exit_calls);
+}
+
+void at_post_exit(void (*fn)(void))
+{
+	atexit(_on_exit);
+	remember(fn, &post_exit_calls);
 }
