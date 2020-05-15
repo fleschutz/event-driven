@@ -1,2 +1,5 @@
-# event-driven
-Event-driven C/C++ programming
+Event-driven Programming Lib (EDPL)
+===================================
+Library to support event-driven programming.
+
+* Programming language: C/C++
