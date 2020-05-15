@@ -21,32 +21,32 @@ void on_noon()
 	puts("noon");
 }
 
-void on_pre_run()
+void on_pre_run(time_t now)
 {
-	puts("entering run()");
+	printf("entering run() at %s", ctime(&now));
 }
 
-void on_post_run()
+void on_post_run(time_t now)
 {
-	puts("leaving run()");
+	printf("leaving run() at %s", ctime(&now));
 }
 
-void on_buffer_overflow()
+void on_buffer_overflow(time_t now)
 {
-	puts("buffer overflow");
+	printf("buffer overflow at %s", ctime(&now));
 }
 
-void on_memory_exhausted()
+void on_memory_exhausted(time_t now)
 {
-	puts("memory exhausted");
+	printf("memory exhausted at %s", ctime(&now));
 }
 
-void on_exit()
+void on_exit(time_t now)
 {
-	puts("exited");
+	printf("exited at %s", ctime(&now));
 }
 
-void main()
+int main()
 {
 	at_sunrise(on_sunrise);
 	at_midday(on_midday);
@@ -58,4 +58,5 @@ void main()
 	at_memory_exhausted(on_memory_exhausted);
 	at_exit(on_exit);
 	run();
+	return 0;
 }
