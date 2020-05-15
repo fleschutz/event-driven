@@ -1,9 +1,14 @@
 #include <stdio.h>
-#include "at.h"
+#include "EDP.h" // event-driven programming (EDP)
 
 void on_sunrise()
 {
 	puts("good morning");
+}
+
+void on_midday()
+{
+	puts("midday");
 }
 
 void on_sunset()
@@ -11,21 +16,22 @@ void on_sunset()
 	puts("good night");
 }
 
-void on_exit1()
+void on_noon()
 {
-	puts("good-bye");
+	puts("noon");
 }
 
-void on_exit2()
+void on_exit()
 {
-	puts("farewell");
+	puts("good-bye");
 }
 
 void main()
 {
 	at_sunrise(on_sunrise);
+	at_midday(on_midday);
 	at_sunset(on_sunset);
-	at_exit(on_exit1);
-	at_exit(on_exit2);
-	await();
+	at_noon(on_noon);
+	at_exit(on_exit);
+	run();
 }
