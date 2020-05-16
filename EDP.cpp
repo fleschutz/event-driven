@@ -132,6 +132,11 @@ void at_memory_exhausted(void (*fn)(time_t))
 	remember(fn, &memory_exhausted_calls);
 }
 
+void at_program_start(void (*fn)(void))
+{
+	(*fn)();
+}
+
 static void _on_exit(void)
 {
 	call(&exit_calls);
@@ -147,4 +152,20 @@ void at_exit(void (*fn)(time_t))
 {
 	atexit(_on_exit);
 	remember(fn, &exit_calls);
+}
+
+#include <stdio.h>
+static bool shut_up = false;
+
+void say(const char *text, ...)
+{
+	va_list arguments;
+	char buf[1024];
+
+	if (shut_up)
+		return;
+	va_start(arguments, text);
+	vsnprintf(buf, sizeof(buf), text, arguments);
+	puts(buf);
+	va_end(arguments);
 }

@@ -31,5 +31,11 @@ extern void at_buffer_overflow(void (*fn)(time_t));
 extern void at_memory_exhausted(void (*fn)(void));
 extern void at_memory_exhausted(void (*fn)(time_t));
 
+extern void at_program_start(void (*fn)(void));
+extern void at_program_start(void (*fn)(time_t));
 extern void at_exit(void (*fn)(void));
 extern void at_exit(void (*fn)(time_t));
+
+
+// output:
+extern void say(const char *text, ...);
