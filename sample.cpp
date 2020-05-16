@@ -25,29 +25,29 @@ void on_noon()
 	say("By the way, it's noon");
 }
 
-void on_pre_run(time_t now)
+void on_pre_run(Time now)
 {
-	say("I'm entering run() at %s", ctime(&now));
+	say("I'm entering run() at %s", now.localTime());
 }
 
-void on_post_run(time_t now)
+void on_post_run(Time now)
 {
-	say("I'm leaving run() at %s", ctime(&now));
+	say("I'm leaving run() at %s", now.localTime());
 }
 
-void on_buffer_overflow(time_t now)
+void on_buffer_overflow(Time now)
 {
-	say("I have a buffer overflow! It's %s", ctime(&now));
+	say("I have a buffer overflow! It's %s", now.localTime());
 }
 
-void on_memory_exhausted(time_t now)
+void on_memory_exhausted(Time now)
 {
-	say("My memory is exhausted! It's %s", ctime(&now));
+	say("My memory is exhausted! It's %s", now.localTime());
 }
 
-void on_exit(time_t now)
+void on_exit(Time now)
 {
-	say("Bye, I'm exiting now. It's %s", ctime(&now));
+	say("Bye, I'm exiting now. It's %s", now.localTime());
 }
 
 int main()

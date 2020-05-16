@@ -7,7 +7,7 @@
 #define NUM_CALLS 10
 typedef struct {
 	void (*voids[NUM_CALLS])(void);
-	void (*nows[NUM_CALLS])(time_t now);
+	void (*nows[NUM_CALLS])(Time now);
 } Calls;
 static Calls pre_run_calls, post_run_calls;
 static Calls buffer_overflow_calls, memory_exhausted_calls;
@@ -21,8 +21,7 @@ static void call(Calls *calls)
 		else
 			break;
 
-	time_t now = 0;
-	time(&now);
+	Time now;
 	for (int i = 0; i < NUM_CALLS; ++i)
 		if (calls->nows[i])
 			(*calls->nows[i])(now);
@@ -42,7 +41,7 @@ static void remember(void (*fn)(void), Calls *calls)
 	call(&buffer_overflow_calls);
 }
 
-static void remember(void (*fn)(time_t now), Calls *calls)
+static void remember(void (*fn)(Time now), Calls *calls)
 {
 	for (int i = 0; i < NUM_CALLS; ++i)
 	{
@@ -89,7 +88,7 @@ void at_pre_run(void (*fn)(void))
 	remember(fn, &pre_run_calls);
 }
 
-void at_pre_run(void (*fn)(time_t))
+void at_pre_run(void (*fn)(Time))
 {
 	remember(fn, &pre_run_calls);
 }
@@ -99,7 +98,7 @@ void at_post_run(void (*fn)(void))
 	remember(fn, &post_run_calls);
 }
 
-void at_post_run(void (*fn)(time_t))
+void at_post_run(void (*fn)(Time))
 {
 	remember(fn, &post_run_calls);
 }
@@ -117,7 +116,7 @@ void at_buffer_overflow(void (*fn)(void))
 	remember(fn, &buffer_overflow_calls);
 }
 
-void at_buffer_overflow(void (*fn)(time_t))
+void at_buffer_overflow(void (*fn)(Time))
 {
 	remember(fn, &buffer_overflow_calls);
 }
@@ -127,7 +126,7 @@ void at_memory_exhausted(void (*fn)(void))
 	remember(fn, &memory_exhausted_calls);
 }
 
-void at_memory_exhausted(void (*fn)(time_t))
+void at_memory_exhausted(void (*fn)(Time))
 {
 	remember(fn, &memory_exhausted_calls);
 }
@@ -148,7 +147,7 @@ void at_exit(void (*fn)(void))
 	remember(fn, &exit_calls);
 }
 
-void at_exit(void (*fn)(time_t))
+void at_exit(void (*fn)(Time))
 {
 	atexit(_on_exit);
 	remember(fn, &exit_calls);
