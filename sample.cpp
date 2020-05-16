@@ -7,47 +7,47 @@ void on_program_start()
 
 void on_sunrise()
 {
-	say("good morning");
+	say("By the way, the sun rises now");
 }
 
 void on_midday()
 {
-	say("midday");
+	say("By the way, it's midday");
 }
 
 void on_sunset()
 {
-	say("good night");
+	say("By the way, the sun sets down");
 }
 
 void on_noon()
 {
-	say("noon");
+	say("By the way, it's noon");
 }
 
 void on_pre_run(time_t now)
 {
-	say("entering run() at %s", ctime(&now));
+	say("I'm entering run() at %s", ctime(&now));
 }
 
 void on_post_run(time_t now)
 {
-	say("leaving run() at %s", ctime(&now));
+	say("I'm leaving run() at %s", ctime(&now));
 }
 
 void on_buffer_overflow(time_t now)
 {
-	say("buffer overflow at %s", ctime(&now));
+	say("I have a buffer overflow! It's %s", ctime(&now));
 }
 
 void on_memory_exhausted(time_t now)
 {
-	say("memory exhausted at %s", ctime(&now));
+	say("My memory is exhausted! It's %s", ctime(&now));
 }
 
 void on_exit(time_t now)
 {
-	say("I'm exiting now at %s", ctime(&now));
+	say("Bye, I'm exiting now. It's %s", ctime(&now));
 }
 
 int main()

@@ -2,6 +2,13 @@
 #pragma once
 
 #include <time.h> // to provide time_t
+class Time
+{
+public:
+	const char *toString(void) { return ctime(&m_time); }
+private:
+	time_t m_time;
+};
 
 extern void at_pre_sunrise(void (*fn)(void));
 extern void at_sunrise(void (*fn)(void));

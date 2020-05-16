@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 2.6)
 
-project (sample)
+project (ivy)
 
-add_executable (sample
+add_executable (ivy
 	sample.cpp
 	EDP.cpp
 	)
