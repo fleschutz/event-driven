@@ -18,13 +18,15 @@ extern void at_moonrise(void (*fn)(Time));
 extern void at_moonset(void (*fn)(void));
 extern void at_moonset(void (*fn)(Time));
 
-// at an event:
+// at a certain event:
+extern void at_program_start(void (*fn)(void));
+extern void at_program_start(void (*fn)(Time));
+extern void at_file_change(const char *path, void (*fn)(void));
+extern void at_folder_change(const char *path, void (*fn)(void));
 extern void at_buffer_overflow(void (*fn)(void));
 extern void at_buffer_overflow(void (*fn)(Time));
 extern void at_memory_exhausted(void (*fn)(void));
 extern void at_memory_exhausted(void (*fn)(Time));
-extern void at_program_start(void (*fn)(void));
-extern void at_program_start(void (*fn)(Time));
 extern void at_exit(void (*fn)(void));
 extern void at_exit(void (*fn)(Time));
 
