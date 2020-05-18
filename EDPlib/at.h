@@ -1,18 +1,5 @@
-// EDP.h - event-driven programming (EDP)
 #pragma once
-
-#include <time.h> // to provide time_t
-#include <stdarg.h>
-class Time
-{
-public:
-	Time() { time(&m_time); }
-	const char *toString(void) { return ctime(&m_time); }
-	const char *toLocalHM(void) { static char buf[20]; auto myTime = localtime(&m_time); strftime(buf, sizeof(buf), "%H:%M", myTime); return buf; }
-	unsigned long unixTime() { return m_time; }
-private:
-	time_t m_time;
-};
+#include "time.h"
 
 extern void at_sunrise(void (*fn)(void));
 
@@ -39,6 +26,3 @@ extern void at_program_start(void (*fn)(Time));
 extern void at_exit(void (*fn)(void));
 extern void at_exit(void (*fn)(Time));
 
-
-// output:
-extern void say(const char *text, ...);

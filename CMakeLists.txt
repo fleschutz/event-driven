@@ -4,5 +4,6 @@ project (ivy)
 
 add_executable (ivy
 	sample.cpp
-	EDP.cpp
+	EDPlib/at.cpp
+	EDPlib/say.cpp
 	)

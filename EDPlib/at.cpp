@@ -1,5 +1,4 @@
-// EDP.c - event-driven programming (EDP)
-#include "EDP.h"
+#include "at.h"
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -20,13 +19,13 @@ void at_noon(void (*fn)(void))
 void at_sunrise(void (*fn)(void))
 {
 	Time now;
-	//sortIn(fn, now, &time_calls);
+	sortIn(fn, now, &time_calls);
 }
 
 void at_sunset(void (*fn)(void))
 {
 	Time now;
-	//sortIn(fn, now, &time_calls);
+	sortIn(fn, now, &time_calls);
 }
 
 void at_pre_run(void (*fn)(void))
@@ -96,20 +95,4 @@ void at_exit(void (*fn)(Time))
 {
 	atexit(_on_exit);
 	append(fn, &exit_calls);
-}
-
-#include <stdio.h>
-static bool shut_up = false;
-
-void say(const char *text, ...)
-{
-	va_list arguments;
-	char buf[1024];
-
-	if (shut_up)
-		return;
-	va_start(arguments, text);
-	vsnprintf(buf, sizeof(buf), text, arguments);
-	puts(buf);
-	va_end(arguments);
 }
