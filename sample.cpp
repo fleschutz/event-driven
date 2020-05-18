@@ -25,6 +25,11 @@ void on_noon()
 	say("By the way, it's noon");
 }
 
+void on_unix_time()
+{
+	say("By the way, it's unix time 3,000,000,000");
+}
+
 void on_pre_run(Time time)
 {
 	say("I'm entering run() at %s", time.toHM());
@@ -57,6 +62,7 @@ int main()
 	at_midday(on_midday);
 	at_sunset(on_sunset);
 	at_noon(on_noon);
+	at_time(3000000000, on_unix_time);
 	at_pre_run(on_pre_run);
 	at_post_run(on_post_run);
 	at_buffer_overflow(on_buffer_overflow);

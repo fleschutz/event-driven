@@ -3,6 +3,7 @@
 #include "time.h"
 
 // at a certain time:
+extern void at_time(Time time, void (*fn)(void));
 extern void at_time(Time time, void (*fn)(Time));
 extern void at_midday(void (*fn)(void));
 extern void at_midday(void (*fn)(Time));
