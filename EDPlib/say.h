@@ -1,5 +1,5 @@
 #pragma once
 
-#include <cstdarg>
+#include <stdarg.h>
 
 extern void say(const char *text, ...);

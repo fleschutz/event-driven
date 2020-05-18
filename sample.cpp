@@ -27,27 +27,27 @@ void on_noon()
 
 void on_pre_run(Time time)
 {
-	say("I'm entering run() at %s", time.toLocalHM());
+	say("I'm entering run() at %s", time.toHM());
 }
 
 void on_post_run(Time time)
 {
-	say("I'm leaving run() at %s", time.toLocalHM());
+	say("I'm leaving run() at %s", time.toHM());
 }
 
 void on_buffer_overflow(Time time)
 {
-	say("I have a buffer overflow! It's %s", time.toLocalHM());
+	say("I have a buffer overflow! It's %s", time.toHM());
 }
 
 void on_memory_exhausted(Time time)
 {
-	say("My memory is exhausted! It's %s", time.toLocalHM());
+	say("My memory is exhausted! It's %s", time.toHM());
 }
 
 void on_exit(Time time)
 {
-	say("Bye, I'm exiting now. It's %s", time.toLocalHM());
+	say("Bye, I'm exiting now. It's %s", time.toHM());
 }
 
 int main()
