@@ -1,6 +1,6 @@
 #pragma once
 
+#include "Triggers.h"
+#include "Actions.h"
 #include "time.h"
-#include "trigger.h"
 #include "at.h"
-#include "say.h"

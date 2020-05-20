@@ -1,73 +1,21 @@
-#include "EDPlib/any.h" // event-driven programming library (EDPlib)
+#include "EDPlib/Triggers.h"
+#include "EDPlib/Actions.h"
 
-void on_program_start()
+class MyClass : public Triggers, Actions
 {
-	say("Hi, I'm Ivy");
-}
-
-void on_sunrise()
-{
-	say("By the way, the sun rises now");
-}
-
-void on_midday()
-{
-	say("By the way, it's midday");
-}
-
-void on_sunset()
-{
-	say("By the way, the sun sets down");
-}
-
-void on_noon()
-{
-	say("By the way, it's noon");
-}
-
-void on_unix_time()
-{
-	say("By the way, it's unix time 3,000,000,000");
-}
-
-void on_pre_run(Time time)
-{
-	say("I'm entering run() at %s", time.toHM());
-}
-
-void on_post_run(Time time)
-{
-	say("I'm leaving run() at %s", time.toHM());
-}
-
-void on_buffer_overflow(Time time)
-{
-	say("I have a buffer overflow! It's %s", time.toHM());
-}
-
-void on_memory_exhausted(Time time)
-{
-	say("My memory is exhausted! It's %s", time.toHM());
-}
-
-void on_exit(Time time)
-{
-	say("Bye, I'm exiting now. It's %s", time.toHM());
-}
+	void on_enter() { say("Hi, I'm Ivy"); }
+	void on_sunrise() { say("By the way, the sun rises now"); }
+	void on_midday() { say("By the way, it's midday"); }
+	void on_sunset() { say("By the way, the sun sets down"); }
+	void on_noon() { say("By the way, it's noon"); }
+	void on_buffer_overflow() { say("I have a buffer overflow!"); exit_failure(); }
+	void on_memory_exhausted() { say("My memory is exhausted"); exit_failure(); }
+	void on_leave() { say("Bye, I'm leaving now"); }
+};
 
 int main()
 {
-	at_program_start(on_program_start);
-	at_sunrise(on_sunrise);
-	at_midday(on_midday);
-	at_sunset(on_sunset);
-	at_noon(on_noon);
-	at_time(3000000000, on_unix_time);
-	at_pre_run(on_pre_run);
-	at_post_run(on_post_run);
-	at_buffer_overflow(on_buffer_overflow);
-	at_memory_exhausted(on_memory_exhausted);
-	at_exit(on_exit);
-	run();
+	MyClass myClass;
+	myClass.exec();
 	return 0;
 }
