@@ -11,6 +11,7 @@ class MyClass : public Triggers, Actions
 	void on_buffer_overflow() { say("I have a buffer overflow!"); exit_program(); }
 	void on_memory_exhausted() { say("My memory is exhausted"); exit_program(); }
 	void on_exit() { say("Bye, I'm exiting now"); }
+	void on_leave() { say("Bye, I'm leaving now"); }
 };
 
 int main()

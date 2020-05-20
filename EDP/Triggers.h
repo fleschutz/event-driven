@@ -2,16 +2,18 @@
 
 class Triggers
 {
-	public:
-		void exec() { /*TODO*/; }
-	private:
+public:
+	Triggers();
+	virtual void on_enter()			{ }
+	virtual void on_sunrise()		{ }
+	virtual void on_midday()		{ }
+	virtual void on_sunset()		{ }
+	virtual void on_noon()			{ }
+	virtual void on_buffer_overflow()	{ }
+	virtual void on_memory_exhausted()	{ }
+	virtual void on_exit()			{ }
+	virtual void on_leave()			{ }
+	void exec();
+	~Triggers();
+private:
 };
-
-typedef enum
-{
-	PROGRAM_START,
-	PROGRAM_EXIT,
-	ON_TIMESTAMP,
-	FILE_CHANGED,
-	FOLDER_CHANGED,
-} TriggerType;

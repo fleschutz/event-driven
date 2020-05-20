@@ -1,8 +1,46 @@
-#include "at.h"
+#include "Triggers.h"
 
+#include "at.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include "calls.h"
+
+static Triggers* current = nullptr;
+
+static void __on_exit(void)
+{
+	if (current)
+		current->on_exit();
+}
+
+Triggers::Triggers()
+{
+	current = this;
+	at_exit(__on_exit);
+}
+
+void Triggers::exec()
+{
+	on_enter();
+	usleep(5 * 1000 * 1000);
+	on_leave();
+}
+
+Triggers::~Triggers()
+{
+	current = nullptr;
+}
+
+
+
+typedef enum
+{
+	PROGRAM_START,
+	PROGRAM_EXIT,
+	ON_TIMESTAMP,
+	FILE_CHANGED,
+	FOLDER_CHANGED,
+} TriggerType;
 
 void at_time(Time time, void (*fn)(void))
 {
