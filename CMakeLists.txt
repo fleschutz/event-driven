@@ -4,6 +4,6 @@ project (ivy)
 
 add_executable (ivy
 	sample.cpp
-	EDPlib/Triggers.cpp
-	EDPlib/Actions.cpp
+	EDP/Triggers.cpp
+	EDP/Actions.cpp
 	)
