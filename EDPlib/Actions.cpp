@@ -21,7 +21,12 @@ void Actions::shut_up()
 	m_shut_up = true;
 }
 
-void Actions::exit_failure()
+void Actions::wakeup(const char* MACaddress)
 {
-	exit(EXIT_FAILURE);
+	// TODO
+}
+
+void Actions::exit_program(int exitCode)
+{
+	exit(exitCode);
 }

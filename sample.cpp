@@ -8,8 +8,8 @@ class MyClass : public Triggers, Actions
 	void on_midday() { say("By the way, it's midday"); }
 	void on_sunset() { say("By the way, the sun sets down"); }
 	void on_noon() { say("By the way, it's noon"); }
-	void on_buffer_overflow() { say("I have a buffer overflow!"); exit_failure(); }
-	void on_memory_exhausted() { say("My memory is exhausted"); exit_failure(); }
+	void on_buffer_overflow() { say("I have a buffer overflow!"); exit_program(); }
+	void on_memory_exhausted() { say("My memory is exhausted"); exit_program(); }
 	void on_leave() { say("Bye, I'm leaving now"); }
 };
 
