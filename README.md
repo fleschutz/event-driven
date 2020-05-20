@@ -1,6 +1,6 @@
-Event-driven Programming Lib (EDPlib)
-=====================================
-Library to support event-driven programming.
+Event-driven Programming (EDP)
+==============================
+Library and Classes to support event-driven programming.
 
-* C/C++ programming language
-* with sample code: sample.cpp
+* for programming language C++
+* with sample code: hello_world.cpp

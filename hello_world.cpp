@@ -3,7 +3,7 @@
 
 class MyClass : public Triggers, Actions
 {
-	void on_enter() { say("Hi, I'm Ivy"); }
+	void on_enter() { say("Hello world! I'm Ivy"); }
 	void on_sunrise() { say("By the way, the sun rises now"); }
 	void on_midday() { say("By the way, it's midday"); }
 	void on_sunset() { say("By the way, the sun sets down"); }
