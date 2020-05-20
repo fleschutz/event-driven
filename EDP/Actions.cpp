@@ -23,7 +23,7 @@ void Actions::shut_up()
 
 void Actions::wakeup(const char* MACaddress)
 {
-	// TODO
+	// TODO: send a magic packet per UDP to port 9
 }
 
 void Actions::exit_program(int exitCode)
