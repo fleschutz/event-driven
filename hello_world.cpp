@@ -1,7 +1,7 @@
 #include "EDP/Triggers.h"
 #include "EDP/Actions.h"
 
-class MyClass : public Triggers, Actions
+class Example : public Triggers, Actions
 {
 	void on_enter() { say("Hello world! I'm Ivy"); }
 	void on_sunrise() { say("By the way, the sun rises now"); }
@@ -16,7 +16,7 @@ class MyClass : public Triggers, Actions
 
 int main()
 {
-	MyClass myClass;
-	myClass.exec();
+	Example example;
+	example.exec();
 	return 0;
 }

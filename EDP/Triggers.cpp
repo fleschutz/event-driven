@@ -1,8 +1,8 @@
 #include "Triggers.h"
 
-#include "at.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include "time.h"
 #include "calls.h"
 
 static Triggers* current = nullptr;
@@ -16,7 +16,7 @@ static void __on_exit(void)
 Triggers::Triggers()
 {
 	current = this;
-	at_exit(__on_exit);
+	atexit(__on_exit);
 }
 
 void Triggers::exec()
