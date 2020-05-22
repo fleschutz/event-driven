@@ -8,6 +8,8 @@ public:
 	void say(const char* text, ...);
 	void shut_up();
 
+	void warning(const char* text, ...);
+
 	void wakeup(const char* MACaddress);
 
 	void exit_program(int exitCode = 1);
