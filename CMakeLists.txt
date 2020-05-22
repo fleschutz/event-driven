@@ -6,4 +6,5 @@ add_executable (ivy
 	hello_world.cpp
 	EDP/Triggers.cpp
 	EDP/Actions.cpp
+	EDP/Time.cpp
 	)
