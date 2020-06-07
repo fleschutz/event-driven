@@ -17,6 +17,8 @@ public:
 	virtual void on_device_offline()	{ }
 	virtual void on_buffer_overflow()	{ }
 	virtual void on_memory_exhausted()	{ }
+	virtual void on_SIGUSR()		{ }
+	virtual void on_SIGTERM()		{ }
 	virtual void on_exit()			{ }
 	virtual void on_leave()			{ }
 	void exec();

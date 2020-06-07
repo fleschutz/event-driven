@@ -10,6 +10,8 @@ class MyRules : public Triggers, Actions
 	void on_noon() { say("By the way, it's noon"); }
 	void on_buffer_overflow() { say("I have a buffer overflow!"); exit_program(); }
 	void on_memory_exhausted() { say("My memory is exhausted"); exit_program(); }
+	void on_SIGTERM() { say("Got signal TERM"); exit_program(); }
+	void on_SIGUSER() { say("Got USER signal"); }
 	void on_exit() { say("Bye, I'm exiting now"); }
 	void on_leave() { say("Bye, I'm leaving now"); }
 };
