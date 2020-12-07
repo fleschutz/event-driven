@@ -1,3 +1,4 @@
+# Platform-independent Makefile - requires cmake 2.6 or higher
 cmake_minimum_required (VERSION 2.6)
 
 # Source code is written in:
